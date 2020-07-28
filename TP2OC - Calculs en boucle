@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace TPOC2_calculs_en_boucle
+{
+    class Program
+    {
+        private const double V = 1.2;
+
+        static void Main(string[] args)
+        {
+            static int calculSommeEntier(int j, int k)
+            {
+                int total = 0;
+                for(int i = j; i <= k; i++)
+                {
+                    total = total + i;
+                }
+
+                return total;
+            }
+
+            static double calculMoyenne(List<double> liste)
+            {
+                double total = 0.00;
+                foreach(double elem in liste)
+                {
+                    total = total + elem;
+                }
+
+                return total / liste.Count;
+            }
+
+            static int troisiemeMéthode()
+            {
+                List<int> liste3 = new List<int> { };
+                List<int> liste5 = new List<int> { };
+
+                for (int i=1; i <= 100; i++)
+                {
+                    if (i % 3 == 0)
+                    {
+                        liste3.Add(i);
+                    }
+                   
+                    if (i % 5 == 0)
+                    {
+                        liste5.Add(i);
+                    }
+                }
+
+                int somme = 0;
+                foreach(int trois in liste3)
+                {
+                    foreach(int cinq in liste5)
+                    {
+                        if(trois == cinq)
+                        {
+                            somme = somme + (2 * trois);
+                        } else if( trois < cinq)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                return somme;
+            }
+
+            //Méthode 1
+            Console.WriteLine(calculSommeEntier(1, 100));
+
+            //Méthode 2
+            List<double> decimaux = new List<double> { 1.2, 3.3, 4.4, 5.56 };
+            Console.WriteLine(calculMoyenne(decimaux));
+
+            //Méthode 3
+            Console.WriteLine(troisiemeMéthode());
+
+        }
+    }
+}
